@@ -33,8 +33,26 @@
 
         <div class="container">
             {% for comment in comments %}
-                <div class="row">
-                    {{ comment.content }}
+                <div class="row" style="margin-bottom: 1ex">
+                    <div>
+                        {{ comment.content }}
+                    </div>
+                    <div>
+                        <small>
+                            Posted
+                            {% if comment.posted %}
+                                {{ comment.posted.strftime("%A, %d %B %Y at %H:%M") }}
+                            {% else %}
+                                at an unknown time
+                            {% endif %}
+                            by
+                            {% if comment.commenter %}
+                                {{ comment.commenter.username }}
+                            {% else %}
+                                anonymous
+                            {% endif %}
+                        </small>
+                    </div>
                 </div>
             {% endfor %}
 
